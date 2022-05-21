@@ -5,7 +5,9 @@ const Navbar = () => {
     const menu = <>
         <CustomLink to={'/'}>Home</CustomLink>
         <CustomLink to={'/about'}>About</CustomLink>
-        <CustomLink to={'/Services'}>Services</CustomLink>
+        <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
+        <CustomLink to={'/myPortfolio'}>My Orders</CustomLink>
+        <CustomLink to={'/myPortfolio'}>Add a Review</CustomLink>
     </>;
 
     return (
@@ -21,16 +23,11 @@ const Navbar = () => {
                 </div>
                 <a className="btn btn-ghost normal-case text-xl">Blaze Manufacturing</a>
             </div>
-            <div className="navbar-end hidden lg:flex">
+            <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 gap-8">
                     {menu}
                 </ul>
             </div>
-            {/* <div className="navbar-end">
-                <ul className="menu menu-horizontal p-0">
-                    {menu}
-                </ul>
-            </div> */}
         </div>
     );
 };
