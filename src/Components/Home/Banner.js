@@ -2,12 +2,12 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div class="hero min-h-screen bg-base-200">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <img src="https://api.lorem.space/image/movie?w=260&h=400" class="max-w-sm rounded-lg shadow-2xl" alt=''/>
+        <div class="hero bg-base-200 lg:px-16">
+            <div class="hero-content flex-col lg:flex-row-reverse gap-10">
+                <img src="https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg" class="lg:w-2/5 w-full rounded-lg shadow-2xl" alt=''/>
                 <div>
-                    <h1 class="text-5xl font-bold">Box Office News!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 class="text-5xl font-bold">Blaze Manufacturing!</h1>
+                    <p class="py-6">We're proud of our ability to provide reliable and affordable metal finishing services to companies. We're one of the eco-friendly metal plating companies and trying to develop metal finishing processes that protect environment.</p>
                     <button class="btn btn-primary">Get Started</button>
                 </div>
             </div>
