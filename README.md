@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# Blaze Manufacturing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Click to open [Live Site](https://github.com/facebook/create-react-app).
+
+
+## Website Features
+ - A manufacturing website of hammer, brushes etc.
+ - Users can order, ship and pay.
+ - Loading Spinner when data loads.
+ - Users can login using google or email and password.
+ - If user forgets their password he can reset it.
+ - Users can't do anything unless he is logged in.
 
 ## Available Scripts
 
