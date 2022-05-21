@@ -2,13 +2,13 @@ import React from 'react';
 
 const Banner = () => {
     return (
-        <div class="hero bg-base-200 lg:px-16">
-            <div class="hero-content flex-col lg:flex-row-reverse gap-10">
-                <img src="https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg" class="lg:w-2/5 w-full rounded-lg shadow-2xl" alt=''/>
+        <div className="hero bg-base-200 lg:px-16">
+            <div className="hero-content flex-col lg:flex-row-reverse gap-10">
+                <img src="https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg" className="lg:w-2/5 w-full rounded-lg shadow-2xl" alt=''/>
                 <div>
-                    <h1 class="text-5xl font-bold">Blaze Manufacturing!</h1>
-                    <p class="py-6">We're proud of our ability to provide reliable and affordable metal finishing services to companies. We're one of the eco-friendly metal plating companies and trying to develop metal finishing processes that protect environment.</p>
-                    <button class="btn btn-primary">Get Started</button>
+                    <h1 className="text-5xl font-bold">Blaze Manufacturing!</h1>
+                    <p className="py-6">We're proud of our ability to provide reliable and affordable metal finishing services to companies. We're one of the eco-friendly metal plating companies and trying to develop metal finishing processes that protect environment.</p>
+                    <button className="btn btn-primary">Get Started</button>
                 </div>
             </div>
         </div>
