@@ -1,7 +1,7 @@
 [
     {
         "name":"Hammer",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,
@@ -9,7 +9,7 @@
     },
     {
         "name":"Brush",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,
@@ -17,7 +17,7 @@
     },
     {
         "name":"Pins",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,
@@ -25,7 +25,7 @@
     },
     {
         "name":"Hammer",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,
@@ -33,7 +33,7 @@
     },
     {
         "name":"Hammer",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,
@@ -41,7 +41,7 @@
     },
     {
         "name":"Hammer",
-        "minQuanitity":1,
+        "minOrder":1,
         "quanitity":1000,
         "image":"https://images.thdstatic.com/productImages/703a3320-0533-4342-bec5-4e4a99712776/svn/tekton-claw-hammers-30303-64_1000.jpg",
         "price":50,

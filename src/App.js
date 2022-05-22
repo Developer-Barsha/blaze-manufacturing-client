@@ -9,6 +9,7 @@ import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
 import NotFound from './Components/NotFound';
 import Login from './Components/User/Login';
 import Signup from './Components/User/Signup';
+import AddReview from './Components/AddReview';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/myPortfolio' element={<MyPortfolio/>}/>
+        <Route path='/addReview' element={<AddReview/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
       <Footer/>
