@@ -14,24 +14,24 @@ const Review = ({ review }) => {
     const ratings = getRatings(rating);
 
     return (
-        <div id={review?._id} className='carousel-item w-full'>
+        <div id={review?._id} className='carousel-item w-full mx-auto justify-center'>
 
-            <div className="lg:w-1/2 w-full items-center justify-center text-center mx-auto">
-                <div id={_id} className='p-3 shadow-lg rounded-lg w-full mx-3'>
-                    <div className="avatar mx-auto">
-                        <div className="w-24 mask mask-hexagon">
-                            <img src='https://cpng.pikpng.com/pngl/s/417-4172348_testimonial-user-icon-color-clipart.png' alt='' />
-                        </div>
-                    </div>
-                    <h1 className="text-xl font-bold">{review?.name}</h1>
-                    <h1 className="">{review?.description} </h1>
-
-                    <div className="rating">
-                        {ratings.map((rating, index) => <p key={index}>{rating}</p>)}
+            <div className="lg:w-1/2 p-3 shadow-lg rounded-lg w-full items-center justify-center text-center mx-3">
+                {/* <div className='> */}
+                <div className="avatar mx-auto">
+                    <div className="w-24 mask mask-hexagon">
+                        <img src='https://cpng.pikpng.com/pngl/s/417-4172348_testimonial-user-icon-color-clipart.png' alt='' />
                     </div>
                 </div>
+                <h1 className="text-xl font-bold">{name}</h1>
+                <h1 className="">{description} </h1>
+
+                <div className="rating">
+                    {ratings.map((rating, index) => <p key={index}>{rating}</p>)}
+                </div>
+                {/* // </div> */}
             </div>
-        </div>
+        </div >
     );
 };
 

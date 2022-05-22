@@ -39,7 +39,7 @@ const Reviews = () => {
 
     return (
         <div>
-            <h1 className="text-3xl text-center pt-8 pb-3 font-bold">What our clients say</h1>
+            <h1 className="text-3xl text-center p-8 font-bold">What our clients say</h1>
             <div className="carousel w-full py-6">
                 {reviews?.length > 0 && reviews?.map(review => <Review key={review?._id} review={review} />)}
             </div>
