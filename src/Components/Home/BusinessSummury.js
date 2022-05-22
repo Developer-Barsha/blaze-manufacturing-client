@@ -2,7 +2,7 @@ import React from 'react';
 
 const BusinessSummury = () => {
     return (
-        <div className='mx-auto flex flex-col justify-center'>
+        <div className='mx-auto flex flex-col py-12 justify-center'>
             <h1 className="text-4xl uppercase text-primary font-bold text-center pt-10 pb-3">Millions Business Trust Us</h1>
             <h1 className="text-xl uppercase text-center pb-10">Try to understand users ecpectation</h1>
 

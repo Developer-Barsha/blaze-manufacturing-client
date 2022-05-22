@@ -14,7 +14,7 @@ const Navbar = () => {
         <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Orders</CustomLink>
-        <CustomLink to={'/addReview'}>Add a Review</CustomLink>
+        <CustomLink to={'/dashboard'}>Dashboard</CustomLink>
         <button className='btn' onClick={() => navigate('/signup')}>Signup</button>
         {user ?
             <button className='btn btn-primary' onClick={() => signOut(auth)}>Sign Out</button> :

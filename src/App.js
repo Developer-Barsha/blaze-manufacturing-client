@@ -9,25 +9,36 @@ import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
 import NotFound from './Components/NotFound';
 import Login from './Components/User/Login';
 import Signup from './Components/User/Signup';
-import AddReview from './Components/AddReview';
+import Dashboard from './Components/Dashboard/Dashboard';
+import RequireAuth from './Shared/RequireAuth';
+import AddReview from './Components/Dashboard/AddReview';
+import AddTool from './Components/Dashboard/AddTool';
+import ToolDetail from './Components/ToolDetail';
 
 function App() {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
 
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/myPortfolio' element={<MyPortfolio/>}/>
-        <Route path='/addReview' element={<AddReview/>}/>
-        <Route path='*' element={<NotFound/>}/>
-      </Routes>
-      <Footer/>
+        {/* // normal routes */}
+        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/myPortfolio' element={<MyPortfolio />} />
+        <Route path='/tool/:id' element={<ToolDetail />} />
+        <Route path='*' element={<NotFound />} />
 
-      <ToastContainer/>
+        {/* // dashboard nested routes */}
+        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+          <Route index element={<AddReview />} />
+          <Route path='addTool' element={<AddTool />} />
+        </Route>
+      </Routes>
+      <Footer />
+
+      <ToastContainer />
     </div>
   );
 }

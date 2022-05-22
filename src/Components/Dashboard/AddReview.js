@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddReview = () => {
     // const [reviews, setReviews] = useState([]);
@@ -18,19 +19,29 @@ const AddReview = () => {
         const rating = e.target.rating.value;
         const description = e.target.description.value;
         const review = { name, rating, description };
+
+        if((!name || !rating) || !description){
+            return toast.error('Please enter valid info!')
+        }
+
         fetch('https://blaze-manufacturing.herokuapp.com/reviews', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(review)
         })
             .then(res => res.json())
-            .then(data => console.log('data' ,data))
+            .then(data => {
+                if(data.insertedId){
+                    toast.success('Successfully added your review!')
+                }
+                e.target.reset();
+            })
 
         console.log('review' ,review);
     }
 
     return (
-        <div>
+        <div className='w-full p-5 lg:p-0'>
             <form onSubmit={handleAddReview} className='py-8 lg:w-1/2 w-full flex flex-col gap-3 mx-auto'>
                 <h1 className="text-3xl font-bold pt-3 text-primary">Add a review</h1>
                 <div className='flex flex-col gap-2'>

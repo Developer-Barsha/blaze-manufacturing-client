@@ -1,41 +1,14 @@
 import React from 'react';
-import { useQuery, QueryClientProvider, useQueryClient } from 'react-query'
+import { useQuery } from 'react-query'
+import Loader from '../../../Shared/Loader';
 import Review from './Review';
 
 const Reviews = () => {
-    const queryClient = useQueryClient();
-
-    const reviewws = [
-        {
-            id: 'item1',
-            name: 'Alex',
-            image: "https://api.lorem.space/image/face?hash=55350",
-            review: 'Very happy to be a part of here. Would definitely recommend this company.'
-        },
-        {
-            id: 'item2',
-            name: 'Annie',
-            image: "https://api.lorem.space/image/face?hash=55350",
-            review: 'Very happy to be a part of here. Would definitely recommend this company.'
-        },
-        {
-            id: 'item3',
-            name: 'Brooklyn',
-            image: "https://api.lorem.space/image/face?hash=55350",
-            review: 'Very happy to be a part of here. Would definitely recommend this company.'
-        },
-        {
-            id: 'item4',
-            name: 'Dalton',
-            image: "https://api.lorem.space/image/face?hash=55350",
-            review: 'Very happy to be a part of here. Would definitely recommend this company.'
-        },
-    ]
     const { data: reviews, isLoading } = useQuery('reviews', () => fetch('https://blaze-manufacturing.herokuapp.com/reviews').then(res => res.json()));
 
-    // if(isLoading){
-    //     return <Loader />
-    // }
+    if(isLoading){
+        return <Loader />
+    }
 
     return (
         <div>
