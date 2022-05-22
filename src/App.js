@@ -27,12 +27,12 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/myPortfolio' element={<MyPortfolio />} />
-        <Route path='/tool/:id' element={<ToolDetail />} />
+        <Route path='/tool/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
         <Route path='*' element={<NotFound />} />
 
         {/* // dashboard nested routes */}
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
-          <Route index element={<AddReview />} />
+          <Route index element={<RequireAuth><AddReview /></RequireAuth>} />
           <Route path='addTool' element={<AddTool />} />
         </Route>
       </Routes>

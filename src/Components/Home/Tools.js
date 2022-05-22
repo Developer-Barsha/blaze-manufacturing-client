@@ -35,7 +35,7 @@ const Tools = () => {
                 )}
 
             </div>
-            <button className='btn mx-auto mt-5 px-8 gap-4 flex items-center'>See All <i class="fa-solid fa-angles-right"></i></button>
+            <button className='btn mx-auto mt-5 px-12 gap-4 flex items-center'>See All <i className="fa-solid fa-angles-right"></i></button>
         </section>
     );
 };

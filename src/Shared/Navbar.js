@@ -15,10 +15,12 @@ const Navbar = () => {
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Orders</CustomLink>
         <CustomLink to={'/dashboard'}>Dashboard</CustomLink>
-        <button className='btn' onClick={() => navigate('/signup')}>Signup</button>
+        {!user ?
+            <button className='btn' onClick={() => navigate('/login')}>Login</button> :
+            <p className='text-primary font-bold'>{user?.displayName}</p> }
         {user ?
             <button className='btn btn-primary' onClick={() => signOut(auth)}>Sign Out</button> :
-            <button className='btn' onClick={() => navigate('/login')}>Login</button> }
+            <button className='btn' onClick={() => navigate('/signup')}>Signup</button> }
     </>;
 
     return (
