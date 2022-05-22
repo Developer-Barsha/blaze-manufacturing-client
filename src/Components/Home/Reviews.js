@@ -31,6 +31,7 @@ const Reviews = () => {
 
     return (
         <div>
+        <h1 className="text-3xl text-center pt-8 pb-3 font-bold">What our clients say</h1>
             <div className="carousel w-full py-6">
                 {reviews.map(review =>
                     <div id={review?.id} key={review?.id} className="carousel-item w-full items-center justify-center text-center">

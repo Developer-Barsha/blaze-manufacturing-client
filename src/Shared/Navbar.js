@@ -1,15 +1,24 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import auth from '../firebase.init';
 import CustomLink from './CustomLink';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+
     const menu = <>
         <CustomLink to={'/'}>Home</CustomLink>
         <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Orders</CustomLink>
         <CustomLink to={'/myPortfolio'}>Add a Review</CustomLink>
-        <button className='btn btn-primary'>Login</button>
-        <button className='btn'>Signup</button>
+        <button className='btn' onClick={() => navigate('/signup')}>Signup</button>
+        {user ?
+            <button className='btn btn-primary' onClick={() => signOut(auth)}>Sign Out</button> :
+            <button className='btn' onClick={() => navigate('/login')}>Login</button> }
     </>;
 
     return (

@@ -7,6 +7,8 @@ import Navbar from './Shared/Navbar';
 import Footer from './Shared/Footer';
 import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
 import NotFound from './Components/NotFound';
+import Login from './Components/User/Login';
+import Signup from './Components/User/Signup';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
         <Route path='/myPortfolio' element={<MyPortfolio/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
