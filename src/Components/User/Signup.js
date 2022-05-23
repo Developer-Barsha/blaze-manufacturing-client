@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import auth from './../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -8,7 +8,7 @@ import Loader from './../../Shared/Loader';
 import Social from '../../Shared/Social';
 
 const Signup = () => {
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification:true});
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -33,8 +33,22 @@ const Signup = () => {
         const name = data.name;
         const email = data.email;
         const password = data.password;
+        const user = { name, email };
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data?.insertedId) {
+                    toast.success('Successfully added your review!')
+                }
+                console.log(data)
+            });
     });
 
     return (
@@ -72,7 +86,7 @@ const Signup = () => {
                 </div>
                 <input type="submit" className="btn w-full btn-primary" value="Register" />
 
-                <Social/>
+                <Social />
 
                 <p className='mt-3'>Have account? <Link to={'/login'} className='text-primary'>Login Here</Link></p>
             </form>

@@ -46,17 +46,17 @@ const AddReview = () => {
                 <h1 className="text-3xl font-bold pt-3 text-primary">Add a review</h1>
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="name">Your Name</label>
-                    <input type="text" name="name" placeholder='Your name' className='p-2 rounded-lg border ountline-0' />
+                    <input type="text" name="name" placeholder='Your name' className='p-2 rounded-lg border outline-purple-200' />
                 </div>
 
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="rating">Your rating</label>
-                    <input type="number" max={5} min={1} name='rating' placeholder='Your rating' className='p-2 rounded-lg border ountline-0' />
+                    <input type="number" max={5} min={1} name='rating' placeholder='Your rating' className='p-2 rounded-lg border outline-purple-200' />
                 </div>
 
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="description">Your review</label>
-                    <textarea rows={3} name='description' placeholder='Your description' className='p-2 rounded-lg border ountline-0 resize-none' />
+                    <textarea rows={3} name='description' placeholder='Your description' className='p-2 rounded-lg border outline-purple-200 resize-none' />
                 </div>
 
                 <input type="submit" className='btn btn-primary' value="Add Review" />

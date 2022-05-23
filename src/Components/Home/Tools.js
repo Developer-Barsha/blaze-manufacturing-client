@@ -24,7 +24,7 @@ const Tools = () => {
                             </h2>
                             <p>{tool.description}</p>
 
-                            <button onClick={() => navigate(`tool/${tool?._id}`)} className='btn btn-primary'>Purchase</button>
+                            <button onClick={() => navigate(`purchase/${tool?._id}`)} className='btn btn-primary'>Purchase</button>
 
                             <div className="card-actions justify-end pt-3">
                                 <div className="badge badge-outline">Min Order: <b>{tool.minOrder}</b></div>

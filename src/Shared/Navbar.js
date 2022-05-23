@@ -13,7 +13,7 @@ const Navbar = () => {
         <CustomLink to={'/'}>Home</CustomLink>
         <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
-        <CustomLink to={'/myPortfolio'}>My Orders</CustomLink>
+        <CustomLink to={'/myProfile'}>My Profile</CustomLink>
         <CustomLink to={'/dashboard'}>Dashboard</CustomLink>
         {!user ?
             <button className='btn' onClick={() => navigate('/login')}>Login</button> :

@@ -14,7 +14,8 @@ import RequireAuth from './Shared/RequireAuth';
 import AddReview from './Components/Dashboard/AddReview';
 import AddTool from './Components/Dashboard/AddTool';
 import ToolDetail from './Components/ToolDetail';
-import MyProfile from './Components/MyProfile';
+import MyProfile from './Components/Dashboard/MyProfile';
+import Welcome from './Components/Dashboard/Welcome';
 
 function App() {
   return (
@@ -28,13 +29,14 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/myPortfolio' element={<MyPortfolio />} />
-        <Route path='/tool/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
-        <Route path='/myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
+        <Route path='/purchase/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
 
         {/* // dashboard nested routes */}
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
-          <Route index element={<RequireAuth><AddReview /></RequireAuth>} />
+          <Route index element={<Welcome/>} />
+          <Route path='addReview' element={<RequireAuth><AddReview /></RequireAuth>} />
           <Route path='addTool' element={<AddTool />} />
+          <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
         </Route>
 
         {/* // 404 route */}

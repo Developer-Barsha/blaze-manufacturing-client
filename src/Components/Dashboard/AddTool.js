@@ -43,28 +43,28 @@ const AddTool = () => {
                 <h1 className="text-3xl font-bold pt-3 text-primary">Add a Tool</h1>
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="name">Tool Name</label>
-                    <input type="text" name="name" placeholder='Tool name' className='p-2 rounded-lg border ountline-0' />
+                    <input type="text" name="name" placeholder='Tool name' className='p-2 rounded-lg border outline-purple-200' />
                 </div>
 
                 <div className="flex w-full gap-2">
                     <div className='flex flex-col gap-2 w-1/2'>
                         <label htmlFor="rating">Quantity</label>
-                        <input type="number" name='quantity' placeholder='Quantity' className='p-2 rounded-lg border w-full ountline-0' />
+                        <input type="number" name='quantity' placeholder='Quantity' className='p-2 rounded-lg border w-full outline-purple-200' />
                     </div>
                     <div className='flex flex-col gap-2 w-1/2'>
                         <label htmlFor="rating">Price</label>
-                        <input type="number" name='price' placeholder='Price' className='p-2 rounded-lg border w-full ountline-0' />
+                        <input type="number" name='price' placeholder='Price' className='p-2 rounded-lg border w-full outline-purple-200' />
                     </div>
                 </div>
 
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="name">Minimum Order</label>
-                    <input type="number" name="minOrder" placeholder='Minimum Order' className='p-2 rounded-lg border ountline-0' />
+                    <input type="number" name="minOrder" placeholder='Minimum Order' className='p-2 rounded-lg border outline-purple-200' />
                 </div>
 
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="description">Short description</label>
-                    <textarea rows={3} name='description' placeholder='Short description' className='p-2 rounded-lg border ountline-0 resize-none' />
+                    <textarea rows={3} name='description' placeholder='Short description' className='p-2 rounded-lg border outline-purple-200 resize-none' />
                 </div>
 
                 <input type="submit" className='btn btn-primary' value="Add Tool" />
