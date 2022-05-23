@@ -2,11 +2,11 @@ import React from 'react';
 
 const BusinessSummury = () => {
     return (
-        <div className='mx-auto flex flex-col py-12 justify-center'>
+        <div className='mx-auto flex flex-col py-12 justify-center lg:w-full'>
             <h1 className="text-4xl uppercase text-primary font-bold text-center pt-10 pb-3">Millions Business Trust Us</h1>
             <h1 className="text-xl uppercase text-center pb-10">Try to understand users ecpectation</h1>
 
-            <div className="stats shadow stats-vertical gap-3 lg:stats-horizontal items-center justify-center">
+            <div className="stats shadow stats-vertical w-fit mx-auto gap-3 lg:stats-horizontal items-center justify-center">
                 <div className="stat place-items-center gap-2">
                     <div className="stat-title"><i className="fa-solid fa-flag text-4xl text-primary"></i></div>
                     <div className="stat-value">71</div>
@@ -32,8 +32,8 @@ const BusinessSummury = () => {
                 </div>
             </div>
 
-            <div className="card mx-auto shadow-purple-200 shadow-lg my-5 border-2">
-                <div className="card-body grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 items-center">
+            <div className="card mx-auto shadow-purple-200 w-11/12 shadow-lg my-5 border-2">
+                <div className="card-body w-full grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 items-center">
                     <div>
                         <h2 className="card-title font-bold text-2xl text-primary">Got any query?</h2>
                         <p>Ask us your question and don't hesitate to contact us!</p>

@@ -14,6 +14,7 @@ import RequireAuth from './Shared/RequireAuth';
 import AddReview from './Components/Dashboard/AddReview';
 import AddTool from './Components/Dashboard/AddTool';
 import ToolDetail from './Components/ToolDetail';
+import MyProfile from './Components/MyProfile';
 
 function App() {
   return (
@@ -28,13 +29,16 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/myPortfolio' element={<MyPortfolio />} />
         <Route path='/tool/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
-        <Route path='*' element={<NotFound />} />
+        <Route path='/myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
 
         {/* // dashboard nested routes */}
         <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
           <Route index element={<RequireAuth><AddReview /></RequireAuth>} />
           <Route path='addTool' element={<AddTool />} />
         </Route>
+
+        {/* // 404 route */}
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
 
