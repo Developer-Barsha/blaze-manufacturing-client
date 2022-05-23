@@ -5,6 +5,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './../../Shared/Loader';
+import Social from '../../Shared/Social';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
@@ -62,8 +63,10 @@ const Login = () => {
                     </label>
                     {<p className='text-error py-2'>{error?.message}</p>}
                 </div>
-
                 <input type="submit" className="btn w-full btn-primary" value="Login" />
+
+                <Social/>
+                
                 <p className='mt-3'>No account? <Link to={'/signup'} className='text-primary'>Register Here</Link></p>
             </form>
         </div>

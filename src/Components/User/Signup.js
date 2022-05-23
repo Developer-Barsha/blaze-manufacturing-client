@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './../../Shared/Loader';
+import Social from '../../Shared/Social';
 
 const Signup = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -69,8 +70,10 @@ const Signup = () => {
                         <span className="label-text-alt text-error">{errors.password?.type === 'required' && "Your password is required"} {errors.password?.type === 'minLength' && "password is too short"}</span>
                     </label>
                 </div>
-
                 <input type="submit" className="btn w-full btn-primary" value="Register" />
+
+                <Social/>
+
                 <p className='mt-3'>Have account? <Link to={'/login'} className='text-primary'>Login Here</Link></p>
             </form>
         </div>

@@ -1,6 +1,6 @@
 # Blaze Manufacturing
 
-Click to open [Live Site](https://github.com/facebook/create-react-app).
+Click to open [Live Site](https://blaze-manufacturing.netlify.app/).
 
 
 ## Website Features
