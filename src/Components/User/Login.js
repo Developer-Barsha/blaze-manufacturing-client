@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import auth from './../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loader from './../../Shared/Loader';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+        if (user) {
+            toast.success('Successfully logged in!');
+            return navigate(from, { replace: true });
+        }
+        if (error) {
+            toast.error(error.message);
+        }
+    }, [user, navigate, from, error])
+
+    if (loading) {
+        return <Loader />
+    }
 
     const onSubmit = handleSubmit(async data => {
         const email = data.email;
         const password = data.password;
         await signInWithEmailAndPassword(email, password);
-
-        if (user) {
-            toast.success('Successfully logged in!');
-        }
-
-        if (error) {
-            toast.error(error?.message);
-        }
     });
+
 
     return (
         <div className='p-3 my-10'>
@@ -47,10 +57,10 @@ const Login = () => {
                     </label>
 
                     <input type="password" placeholder="Your Password" {...register("password", { required: true, minLength: 6 })} className="input input-bordered w-full" />
-
                     <label className="label">
                         <span className="label-text-alt text-error">{errors.password?.type === 'required' && "Password is required"} {errors.password?.type === 'minLength' && "Password is too short"}</span>
                     </label>
+                    {<p className='text-error py-2'>{error?.message}</p>}
                 </div>
 
                 <input type="submit" className="btn w-full btn-primary" value="Login" />

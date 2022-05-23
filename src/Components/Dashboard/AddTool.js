@@ -42,28 +42,28 @@ const AddTool = () => {
             <form onSubmit={handleAddTool} className='py-8 lg:w-1/2 w-full flex flex-col gap-3 mx-auto'>
                 <h1 className="text-3xl font-bold pt-3 text-primary">Add a Tool</h1>
                 <div className='flex flex-col gap-2'>
-                    <label htmlhtmlFor="name">Tool Name</label>
+                    <label htmlFor="name">Tool Name</label>
                     <input type="text" name="name" placeholder='Tool name' className='p-2 rounded-lg border ountline-0' />
                 </div>
 
                 <div className="flex w-full gap-2">
                     <div className='flex flex-col gap-2 w-1/2'>
-                        <label htmlhtmlFor="rating">Quantity</label>
+                        <label htmlFor="rating">Quantity</label>
                         <input type="number" name='quantity' placeholder='Quantity' className='p-2 rounded-lg border w-full ountline-0' />
                     </div>
                     <div className='flex flex-col gap-2 w-1/2'>
-                        <label htmlhtmlFor="rating">Price</label>
+                        <label htmlFor="rating">Price</label>
                         <input type="number" name='price' placeholder='Price' className='p-2 rounded-lg border w-full ountline-0' />
                     </div>
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label htmlhtmlFor="name">Minimum Order</label>
+                    <label htmlFor="name">Minimum Order</label>
                     <input type="number" name="minOrder" placeholder='Minimum Order' className='p-2 rounded-lg border ountline-0' />
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <label htmlhtmlFor="description">Short description</label>
+                    <label htmlFor="description">Short description</label>
                     <textarea rows={3} name='description' placeholder='Short description' className='p-2 rounded-lg border ountline-0 resize-none' />
                 </div>
 

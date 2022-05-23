@@ -3,7 +3,7 @@ import React from 'react';
 const MyPortfolio = () => {
     return (
         <section>
-            <div className="hero bg-base-200 lg:px-16">
+            <div className="hero lg:px-16">
                 <div className="hero-content flex-col lg:flex-row-reverse gap-10">
                     <img src="https://bloomy-captures.netlify.app/static/media/dream.86c47298e8fea3835515.png" className="lg:w-2/5 w-full rounded-lg shadow-2xl" alt='' />
                     <div>
@@ -27,11 +27,11 @@ const MyPortfolio = () => {
                 </div>
                 <div className='flex items-center gap-2'>
                     <p className="font-bold w-24">JavaScript</p>
-                    <progress className="progress progress-primary w-56 h-4" value="56" max="100"></progress>
+                    <progress className="progress progress-primary w-60 h-4" value="56" max="100"></progress>
                 </div>
                 <div className='flex items-center gap-2'>
                     <p className="font-bold w-24">Express</p>
-                    <progress className="progress progress-primary w-56 h-4" value="56" max="100"></progress>
+                    <progress className="progress progress-secondary w-56 h-4" value="56" max="100"></progress>
                 </div>
                 <div className='flex items-center gap-2'>
                     <p className="font-bold w-24">Firebase</p>

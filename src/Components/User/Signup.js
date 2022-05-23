@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from "react-hook-form";
 import auth from './../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Loader from './../../Shared/Loader';
 
 const Signup = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+
+    useEffect(() => {
+        if (user) {
+            toast.success('Successfully account created!');
+            return navigate(from, { replace: true });
+        }
+        if (error) {
+            toast.error(error.message);
+        }
+    }, [user, navigate, from, error])
+
+    if (loading) {
+        return <Loader />
+    }
 
     const onSubmit = handleSubmit(async data => {
         const name = data.name;
@@ -17,20 +34,12 @@ const Signup = () => {
         const password = data.password;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-
-        if (user) {
-            toast.success('Account created!');
-        }
-
-        if (error || updateError) {
-            toast.error(error?.message || updateError?.message);
-        }
     });
 
     return (
         <div className='p-3'>
-            <form onSubmit={onSubmit} className='lg:w-1/2 w-full mx-auto'>
-                <h1 className="text-3xl font-bold">Create Account</h1>
+            <form onSubmit={onSubmit} className='lg:w-1/2 py-8 w-full mx-auto'>
+                <h1 className="text-3xl font-bold text-primary">Create Account</h1>
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">What is your name?</span>
