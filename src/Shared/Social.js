@@ -9,15 +9,18 @@ import Loader from './Loader';
 const Social = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [token] = useToken(user?.user);
+    console.log(user?.user);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
 
+
+    console.log(user?.user?.email, localStorage.getItem('accessToken'));
+
     useEffect(() => {
-        if (user) {
+        if (token) {
             toast.success('Successfully logged in!');
             console.log('INside social login',localStorage.getItem('accessToken'));
-            console.log(user?.user?.email);
             return navigate(from, { replace: true });
         }
         if (error) {

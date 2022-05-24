@@ -14,13 +14,15 @@ const Navbar = () => {
         <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
         <CustomLink to={'/myProfile'}>My Profile</CustomLink>
-        {user && <CustomLink to={'/dashboard'} className='lg:block hidden'>Dashboard</CustomLink>}
-        {/* <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
+        {user && <CustomLink to={'/dashboard'}>Dashboard</CustomLink>}
         {!user ?
             <button className='btn' onClick={() => navigate('/login')}>Login</button> :
             <p className='text-primary font-bold'>{user?.displayName}</p>}
         {user ?
-            <button className='btn btn-primary' onClick={() => signOut(auth)}>Sign Out</button> :
+            <button className='btn btn-primary' onClick={() => {
+                signOut(auth)
+                localStorage.removeItem('accessToken');
+            }}>Sign Out</button> :
             <button className='btn' onClick={() => navigate('/signup')}>Signup</button>}
     </>;
 
@@ -36,6 +38,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <a className="btn btn-ghost normal-case text-xl"> <span className='text-primary'>B.</span>Manufacturing</a>
+
 
                 <label tabIndex="1" htmlFor="dashboard-drawer" className="btn mr-0 ml-auto drawer-button lg:hidden btn-ghost">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>

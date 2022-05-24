@@ -11,20 +11,29 @@ const ToolDetail = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     useEffect(() => {
-        fetch('https://blaze-manufacturing.herokuapp.com/tools/' + id).then(res => res.json()).then(data => setTool(data))
+        fetch('https://blaze-manufacturing.herokuapp.com/tools/' + id, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            }
+        })
+            .then(res => res.json())
+            .then(data => setTool(data))
     }, [id]);
     const [user] = useAuthState(auth);
 
     const handlePurchase = handleSubmit(async (data, e) => {
         e.preventDefault();
-        console.log(data);
-        console.log(localStorage.getItem('accessToken'));
-        fetch('https://blaze-manufacturing.herokuapp.com/orders', {
+        const order = data?.order;
+        const toolPrice = tool?.price;
+        const cost = order * toolPrice;
+        const postingTool = {...data, price:cost};
+
+        fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(postingTool)
         })
             .then(res => res.json())
             .then(result => {
@@ -91,11 +100,19 @@ const ToolDetail = () => {
                             <span className="label-text">Phone</span>
                         </label>
 
-                        <input type="number" placeholder="Your Phone" {...register("Phone", { required: true })} className="input input-bordered w-full" />
+                        <input type="number" placeholder="Your Phone" {...register("phone", { required: true })} className="input input-bordered w-full" />
 
                         <label className="label">
                             <span className="label-text-alt text-error">{errors.Phone?.type === 'required' && "Phone is required"}</span>
                         </label>
+                    </div>
+
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Purchasing</span>
+                        </label>
+
+                        <input type="text" value={tool?.name} readOnly {...register("tool", { required: true })} className="input input-bordered w-full" />
                     </div>
 
                     <div className="form-control w-full">

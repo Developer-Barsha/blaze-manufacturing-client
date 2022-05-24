@@ -11,12 +11,14 @@ import Login from './Components/User/Login';
 import Signup from './Components/User/Signup';
 import Dashboard from './Components/Dashboard/Dashboard';
 import RequireAuth from './Shared/RequireAuth';
+import RequireAdmin from './Shared/RequireAdmin';
 import AddReview from './Components/Dashboard/AddReview';
 import AddTool from './Components/Dashboard/AddTool';
 import ToolDetail from './Components/ToolDetail';
 import MyProfile from './Components/Dashboard/MyProfile';
 import Welcome from './Components/Dashboard/Welcome';
 import MakeAdmin from './Components/Dashboard/MakeAdmin';
+import MyOrders from './Components/Dashboard/MyOrders';
 
 function App() {
   return (
@@ -36,9 +38,10 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />}>
           <Route index element={<Welcome/>} />
           <Route path='addReview' element={<RequireAuth><AddReview /></RequireAuth>} />
-          <Route path='addTool' element={<AddTool />} />
+          <Route path='addTool' element={<RequireAdmin><AddTool /></RequireAdmin>} />
           <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
-          <Route path='makeAdmin' element={<RequireAuth><MakeAdmin /></RequireAuth>} />
+          <Route path='myOrders' element={<RequireAuth><MyOrders /></RequireAuth>} />
+          <Route path='makeAdmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>} />
         </Route>
 
         {/* // 404 route */}

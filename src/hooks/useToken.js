@@ -7,7 +7,7 @@ const useToken = user => {
         const currentUser = { email: email };
 
         if (email) {
-            fetch(`https://blaze-manufacturing.herokuapp.com/users/${user.email}`, {
+            fetch(`http://localhost:5000/users/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -16,9 +16,9 @@ const useToken = user => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    setToken(data.token);
                     localStorage.setItem('accessToken', token);
-                    setToken(data?.token);
-                    console.log('inside use token', data)
+                    console.log(data.token, 'token:-', token);
                 });
         }
     }, [user, token])

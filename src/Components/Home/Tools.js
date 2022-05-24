@@ -13,7 +13,7 @@ const Tools = () => {
             <h1 className="text-3xl text-center font-bold pt-8 pb-5">Purchase Our Tools</h1>
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5 lg:px-12 px-3'>
-                {tools.slice(0, 3).map((tool, index) =>
+                {tools.map((tool, index) =>
                     <div key={index} className="card w-80 bg-base-100 mx-auto shadow-xl p-0">
                         {/* <div className="badge badge-primary ml-auto">primary</div> */}
                         <figure><img src={tool.image} alt="Shoes" className='h-40 mx-auto mt-3' /></figure>

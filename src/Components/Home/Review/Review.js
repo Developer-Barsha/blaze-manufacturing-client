@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Review = ({ review }) => {
-    const { _id, name, description, rating } = review;
+    const { name, description, rating } = review;
 
     const getRatings = num => {
         const ratings = [];

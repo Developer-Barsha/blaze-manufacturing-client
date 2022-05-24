@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { toast } from 'react-toastify';
-import auth from './../../firebase.init';
+import React from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import Loader from '../../Shared/Loader';
 import UserRow from './UserRow';
 
 const MakeAdmin = () => {
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        fetch('https://blaze-manufacturing.herokuapp.com/users',
-        {headers:{authorization:`Bearer ${localStorage.getItem('accessToken')}`}}
-        ).then(res => res.json()).then(data => setUsers(data))
-    }, [users]);
+    const navigate = useNavigate();
+
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+        method: 'GET',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => {
+        if (res.status === 401 || res.status === 403) {
+            navigate('/login');
+        }
+        return res.json()
+    }));
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div>
-            <div className="overflow-x-auto">
-                <table className="table w-full border rounded-xl">
+            <div className="overflow-x-auto w-full">
+                <table className="table w-5/12 border rounded-xl">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
@@ -28,7 +39,8 @@ const MakeAdmin = () => {
                     <tbody>
                         {/* <!-- row 1 --> */}
                         {
-                            users.map((user, index) => <UserRow key={user?._id} index={index} user={user} />)
+                            users?.length > 0 &&
+                            users?.map((user, index) => <UserRow key={user?._id} index={index} user={user} refetch={refetch} />)
                         }
                     </tbody>
                 </table>

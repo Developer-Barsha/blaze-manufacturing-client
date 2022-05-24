@@ -1,15 +1,17 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const UserRow = ({ user, index }) => {
+const UserRow = ({ user, index, refetch }) => {
     const handleMakeAdmin = () => {
         fetch(`https://blaze-manufacturing.herokuapp.com/users/admin/${user?.email}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
         })
             .then(res => res.json())
             .then(data => {
-                if (data?.upsertedId) {
-                    toast.success('Successfully made admin!')
+                if (data?.modifiedCount >0) {
+                    toast.success('Successfully made admin!');
+                    refetch();
                 }
             })
     }
@@ -18,7 +20,7 @@ const UserRow = ({ user, index }) => {
 
         <tr key={user?._id}>
             <th>{index + 1}</th>
-            <td>{user?.name}</td>
+            <td>{user?.name || 'Not Set' }</td>
             <td>{user?.email}</td>
             <td>{
                 user?.role === 'admin' ?
