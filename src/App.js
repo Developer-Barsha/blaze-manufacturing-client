@@ -16,6 +16,7 @@ import AddTool from './Components/Dashboard/AddTool';
 import ToolDetail from './Components/ToolDetail';
 import MyProfile from './Components/Dashboard/MyProfile';
 import Welcome from './Components/Dashboard/Welcome';
+import MakeAdmin from './Components/Dashboard/MakeAdmin';
 
 function App() {
   return (
@@ -32,11 +33,12 @@ function App() {
         <Route path='/purchase/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
 
         {/* // dashboard nested routes */}
-        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+        <Route path='/dashboard' element={<Dashboard />}>
           <Route index element={<Welcome/>} />
           <Route path='addReview' element={<RequireAuth><AddReview /></RequireAuth>} />
           <Route path='addTool' element={<AddTool />} />
           <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
+          <Route path='makeAdmin' element={<RequireAuth><MakeAdmin /></RequireAuth>} />
         </Route>
 
         {/* // 404 route */}

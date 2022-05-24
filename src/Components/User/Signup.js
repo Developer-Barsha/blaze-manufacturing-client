@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import auth from './../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -6,26 +6,29 @@ import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './../../Shared/Loader';
 import Social from '../../Shared/Social';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [createUserWithEmailAndPassword, loogedUser, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [user, setUser] = useState({});
     const { register, formState: { errors }, handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const [token] = useToken(user);
+    console.log('from sign up', token);
 
     useEffect(() => {
-        if (user) {
-            toast.success('Successfully account created!');
+        if (loogedUser) {
             return navigate(from, { replace: true });
         }
-        if (error) {
-            toast.error(error.message);
+        if (error || updateError) {
+            toast.error(error?.message || updateError?.message);
         }
-    }, [user, navigate, from, error])
+    }, [loogedUser, navigate, from, error, updateError])
 
-    if (loading) {
+    if (loading || updating) {
         return <Loader />
     }
 
@@ -33,22 +36,10 @@ const Signup = () => {
         const name = data.name;
         const email = data.email;
         const password = data.password;
-        const user = { name, email };
+        const settingUser = { name, email };
+        setUser(settingUser);
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
-
-        fetch('http://localhost:5000/users', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(user)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data?.insertedId) {
-                    toast.success('Successfully added your review!')
-                }
-                console.log(data)
-            });
     });
 
     return (

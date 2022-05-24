@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
@@ -6,9 +6,10 @@ import auth from '../../firebase.init';
 const MyProfile = () => {
     const [dbUser, setDbUser] = useState({});
     const [user] = useAuthState(auth);
+    const { name, email, education, phone, city, linkedin } = dbUser;
 
-    useEffect(()=>{
-        fetch(`http://localhost:5000/users/${user?.email}`)
+    useEffect(() => {
+        fetch(`https://blaze-manufacturing.herokuapp.com/users/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 if (data?.insertedId) {
@@ -16,28 +17,29 @@ const MyProfile = () => {
                 }
                 setDbUser(data);
             });
-    } ,[dbUser])
-    const {name, email, education, phone, city, linkedin} = dbUser;
+    }, [dbUser, user?.email])
 
+    // console.log(user?.email, dbUser);
     const onSubmit = async e => {
         e.preventDefault();
 
-        const education = e.target.education.value || dbUser?.education;
-        const city = e.target.city.value || dbUser?.city;
-        const phone = e.target.phone.value || dbUser?.phone;
-        const linkedin = e.target.linkedin.value || dbUser?.linkedin;
+        const education = (e.target.education.value || dbUser?.education) || '';
+        const city = (e.target.city.value || dbUser?.city) || '';
+        const phone = (e.target.phone.value || dbUser?.phone) || '';
+        const linkedin = (e.target.linkedin.value || dbUser?.linkedin) || '';
 
-        const user = {name, email, education, phone, city, linkedin};
-        console.log(user);
+        const user = { name, email, education, phone, city, linkedin };
 
-        fetch(`http://localhost:5000/users/${dbUser?._id}`, {
+        fetch(`https://blaze-manufacturing.herokuapp.com/users/${dbUser?.email}`, {
             method: 'PUT',
-            headers: { 'content-type': 'application/json' },
+            headers: {
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
             body: JSON.stringify(user)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data?.upsertedId) {
                     toast.success('Successfully updated profile!')
                 }

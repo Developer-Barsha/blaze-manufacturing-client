@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 
 const ToolDetail = () => {
@@ -11,12 +12,28 @@ const ToolDetail = () => {
 
     useEffect(() => {
         fetch('https://blaze-manufacturing.herokuapp.com/tools/' + id).then(res => res.json()).then(data => setTool(data))
-    }, []);
+    }, [id]);
     const [user] = useAuthState(auth);
 
     const handlePurchase = handleSubmit(async (data, e) => {
         e.preventDefault();
         console.log(data);
+        console.log(localStorage.getItem('accessToken'));
+        fetch('https://blaze-manufacturing.herokuapp.com/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                if (result?.insertedId) {
+                    toast.success('Successfully placed your order!')
+                }
+                e.target.reset();
+            })
     });
 
     return (
@@ -86,8 +103,8 @@ const ToolDetail = () => {
                             <span className="label-text">Order Quanitity</span>
                         </label>
 
-                        <input type="number" placeholder="Your Order" {...register("order", {
-                            required: true, 
+                        <input type="number" placeholder="Your Order" defaultValue={tool?.minOrder} {...register("order", {
+                            required: true,
                             max: {
                                 value: tool?.quanitity,
                                 message: 'Must be under available quantity'

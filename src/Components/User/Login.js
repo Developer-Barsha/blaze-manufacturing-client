@@ -6,23 +6,26 @@ import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './../../Shared/Loader';
 import Social from '../../Shared/Social';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [token] = useToken(user?.user);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
-        if (user) {
+        if (token) {
             toast.success('Successfully logged in!');
+            console.log('inside login',token);
             return navigate(from, { replace: true });
         }
         if (error) {
             toast.error(error.message);
         }
-    }, [user, navigate, from, error])
+    }, [user, navigate, from, error, token])
 
     if (loading) {
         return <Loader />
