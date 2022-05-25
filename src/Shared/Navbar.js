@@ -13,7 +13,7 @@ const Navbar = () => {
         <CustomLink to={'/'}>Home</CustomLink>
         <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
-        <CustomLink to={'/myProfile'}>My Profile</CustomLink>
+        <CustomLink to={'/blogs'}>Blogs</CustomLink>
         {user && <CustomLink to={'/dashboard'}>Dashboard</CustomLink>}
         {!user ?
             <button className='btn' onClick={() => navigate('/login')}>Login</button> :
@@ -27,8 +27,8 @@ const Navbar = () => {
     </>;
 
     return (
-        <div className="navbar bg-purple-50 w-full lg:px-10">
-            <div className="navbar-start w-full">
+        <div className="navbar w-full bg-purple-50 lg:px-10">
+            <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex="0" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -37,10 +37,10 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl"> <span className='text-primary'>B.</span>Manufacturing</a>
+                <a className="btn btn-ghost normal-case text-xl"> <span className='text-primary'>B.</span>M Tools</a>
 
 
-                <label tabIndex="1" htmlFor="dashboard-drawer" className="btn mr-0 ml-auto drawer-button lg:hidden btn-ghost">
+                <label tabIndex="0" htmlFor="dashboard-drawer" className="btn mr-0 ml-auto drawer-button lg:hidden btn-ghost">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
             </div>

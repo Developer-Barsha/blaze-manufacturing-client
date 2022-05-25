@@ -4,15 +4,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ConfirmModal from './ConfirmModal';
 
-const MyOrders = () => {
-    const [orders, setOrders] = useState([]);
+const ManageOrders = () => {
+    const [users, setUsers] = useState([]);
     const [modalId, setModalId] = useState('');
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch('http://localhost:5000/orders?email=' + user?.email, {
+        fetch('http://localhost:5000/users', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -24,11 +23,11 @@ const MyOrders = () => {
             }
             return res.json();
         })
-            .then(data => setOrders(data))
-    }, [orders, user, navigate]);
+            .then(data => setUsers(data))
+    }, [users, user, navigate]);
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
             headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
         })
@@ -60,52 +59,43 @@ const MyOrders = () => {
         <div>
             <div className="flex justify-center">
                 {modal}
-                {orders.length>0 ?
+                {users.length>0 ?
                     <table className="table ml-40 lg:ml-0">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Tool</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Pay</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* <!-- row 1 --> */}
                         {
-                            orders?.length > 0 &&
-                            orders?.map((order, index) => 
-                            <tr key={order?._id}>
+                            users?.length > 0 &&
+                            users?.map((user, index) => 
+                            <tr key={user?._id}>
                                 <th>{index + 1}</th>
-                                <td>{order?.tool}</td>
-                                <td>{order?.email}</td>
-                                <td>{order?.order}</td>
-                                <td>{order?.price}</td>
-                                <td>{
-                                    (order?.price && order?.paid) ?
-                                        <button className='btn btn-xs btn-success'>Paid</button>
-                                        :
-                                        <Link to={`/dashboard/payment/${order?._id}`} className='btn btn-xs btn-primary'>Pay</Link>
-                                }</td>
+                                <td>{user?.name ? user.name : 'Not set'}</td>
+                                <td>{user?.email}</td>
+                                <td>{user?.role ? user.role : 'user'}</td>
                                 <td>
                                     {
-                                        (!order?.paid) &&
+                                        (!user?.paid) &&
                                         // {/* <!-- The button to open modal --> */}
-                                        <label htmlFor="confirm-modal" onClick={()=>setModalId(order?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label>
+                                        <label htmlFor="confirm-modal" onClick={()=>setModalId(user?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label>
                                     }
                                 </td>
                             </tr>)
                         }
                     </tbody>
-                </table> : <p className='text-2xl'>You haven't made any orders yet</p>
+                </table> : <p className='text-2xl'>No Users</p>
                 }
             </div>
         </div >
     );
 };
 
-export default MyOrders;
+export default ManageOrders;

@@ -2,17 +2,6 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const AddTool = () => {
-    // const [reviews, setReviews] = useState([]);
-    // useEffect(() => {
-    //     fetch('https://blaze-manufacturing.herokuapp.com/reviews', {
-    //         method: 'POST',
-    //         headers: { 'content-type': 'application/json' },
-    //         body: JSON.stringify()
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    // }, [])
-
     const handleAddTool = e => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -20,25 +9,29 @@ const AddTool = () => {
         const minOrder = e.target.minOrder.value;
         const quanitity = e.target.quanitity.value;
         const description = e.target.description.value;
-        const tool = { name, price, quanitity, minOrder, description };
-        // fetch('https://blaze-manufacturing.herokuapp.com/reviews', {
-        //     method: 'POST',
-        //     headers: { 'content-type': 'application/json' },
-        //     body: JSON.stringify(review)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.insertedId) {
-        //             toast.success('Successfully added your review!')
-        //         }
-        //         e.target.reset();
-        //     })
+        const image = e.target.image.value;
+        const tool = { name, price, quanitity, minOrder, image, description };
+        fetch('http://localhost:5000/tools', {
+            method: 'POST',
+            headers: { 
+                'content-type': 'application/json',
+                authorization:`Bearer ${localStorage.getItem('accessToken')}` 
+            },
+            body: JSON.stringify(tool)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    toast.success('Successfully added your tool!')
+                }
+                e.target.reset();
+            })
 
         console.log('tool', tool);
     }
 
     return (
-        <div className='w-full p-5 lg:p-0'>
+        <div className='w-full p-5 lg:p-0 mt-10'>
             <form onSubmit={handleAddTool} className='py-8 lg:w-1/2 w-full flex flex-col gap-3 mx-auto'>
                 <h1 className="text-3xl font-bold pt-3 text-primary">Add a Tool</h1>
                 <div className='flex flex-col gap-2'>
@@ -49,7 +42,7 @@ const AddTool = () => {
                 <div className="flex w-full gap-2">
                     <div className='flex flex-col gap-2 w-1/2'>
                         <label htmlFor="rating">Quantity</label>
-                        <input type="number" name='quantity' placeholder='Quantity' className='p-2 rounded-lg border w-full outline-purple-200' />
+                        <input type="number" name='quanitity' placeholder='Quantity' className='p-2 rounded-lg border w-full outline-purple-200' />
                     </div>
                     <div className='flex flex-col gap-2 w-1/2'>
                         <label htmlFor="rating">Price</label>
@@ -60,6 +53,11 @@ const AddTool = () => {
                 <div className='flex flex-col gap-2'>
                     <label htmlFor="name">Minimum Order</label>
                     <input type="number" name="minOrder" placeholder='Minimum Order' className='p-2 rounded-lg border outline-purple-200' />
+                </div>
+
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="name">Tool Image</label>
+                    <input type="text" name="image" placeholder='Tool image' className='p-2 rounded-lg border outline-purple-200' />
                 </div>
 
                 <div className='flex flex-col gap-2'>

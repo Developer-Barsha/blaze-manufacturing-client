@@ -1,8 +1,8 @@
-import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Components/Home/Home';
+import Blogs from './Components/Blogs';
 import Navbar from './Shared/Navbar';
 import Footer from './Shared/Footer';
 import MyPortfolio from './Components/MyPortfolio/MyPortfolio';
@@ -19,6 +19,8 @@ import MyProfile from './Components/Dashboard/MyProfile';
 import Welcome from './Components/Dashboard/Welcome';
 import MakeAdmin from './Components/Dashboard/MakeAdmin';
 import MyOrders from './Components/Dashboard/MyOrders';
+import ManageUsers from './Components/Dashboard/ManageUsers';
+import Payment from './Components/Dashboard/Payment';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/myPortfolio' element={<MyPortfolio />} />
+        <Route path='/blogs' element={<Blogs />} />
         <Route path='/purchase/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
 
         {/* // dashboard nested routes */}
@@ -42,6 +45,8 @@ function App() {
           <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
           <Route path='myOrders' element={<RequireAuth><MyOrders /></RequireAuth>} />
           <Route path='makeAdmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>} />
+          <Route path='manageUsers' element={<RequireAdmin><ManageUsers /></RequireAdmin>} />
+          <Route path='payment/:id' element={<RequireAuth><Payment /></RequireAuth>} />
         </Route>
 
         {/* // 404 route */}

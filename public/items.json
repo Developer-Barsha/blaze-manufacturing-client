@@ -1,8 +1,22 @@
 [
     {
-        "name":"Hammer",
-        "price":50,
-        "description":"",
-        "img":""
+        "question": "How will you improve the performance of a React Application?",
+        "answer": "To optimize react application performance we need to prevent components from unnecessary re-renders. We can use optimized images or lazy loading images too. Code-splitting also plays a great role in react application performance."
+    },
+    {
+        "question": "What are the different ways to manage a state in a React application?",
+        "answer":"We have so many ways to manage state in React application:Local state. Some of them are : 1/ Global state, 2/ Server state, 3/URL state, 4/ Local State, 5/ Data State etc."
+    },
+    {
+        "question": "How does prototypical inheritance work?",
+        "answer": "Prototypal inheritance is a JavaScript feature used to add methods and properties to objects. In prototypal inheritance, developers define properties inside the function and attach methods to the prototype of the function. And lastly, when they initialize instances of that function, the methods don't get recreated along with other objects."
+    },
+    {
+        "question": "Why you do not set the state directly in React?",
+        "answer": "We should never set a state directly. Because if we do we won't be able to modify it the way we would be. If you set it directly, calling setProducts()  later to update, may not replace the update you made. This will cause us to lose control of that state."
+    },
+    {
+        "question": "What is a unit test? Why should write unit tests?",
+        "answer": "A unit test is a software testing method to test individual units of source code to determine if they are all good to be used. We use unit testing because by Unit testing we ensure that our code is quality standard to be deployed. "
     }
 ]

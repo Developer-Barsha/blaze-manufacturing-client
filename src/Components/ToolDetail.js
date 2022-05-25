@@ -25,7 +25,7 @@ const ToolDetail = () => {
         e.preventDefault();
         const order = data?.order;
         const toolPrice = tool?.price;
-        const cost = order * toolPrice;
+        const cost = parseFloat(order * toolPrice).toFixed(2);
         const postingTool = {...data, price:cost};
 
         fetch('http://localhost:5000/orders', {

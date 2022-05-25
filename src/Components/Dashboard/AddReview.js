@@ -2,17 +2,6 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const AddReview = () => {
-    // const [reviews, setReviews] = useState([]);
-    // useEffect(() => {
-    //     fetch('https://blaze-manufacturing.herokuapp.com/reviews', {
-    //         method: 'POST',
-    //         headers: { 'content-type': 'application/json' },
-    //         body: JSON.stringify()
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => console.log(data))
-    // }, [])
-
     const handleAddReview = e => {
         e.preventDefault();
         const name = e.target.name.value;
