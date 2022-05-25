@@ -21,6 +21,8 @@ import MakeAdmin from './Components/Dashboard/MakeAdmin';
 import MyOrders from './Components/Dashboard/MyOrders';
 import ManageUsers from './Components/Dashboard/ManageUsers';
 import Payment from './Components/Dashboard/Payment';
+import ManageOrders from './Components/Dashboard/ManageOrders';
+import ManageTools from './Components/Dashboard/ManageTools';
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
           <Route path='myOrders' element={<RequireAuth><MyOrders /></RequireAuth>} />
           <Route path='makeAdmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>} />
           <Route path='manageUsers' element={<RequireAdmin><ManageUsers /></RequireAdmin>} />
+          <Route path='manageOrders' element={<RequireAdmin><ManageOrders /></RequireAdmin>} />
+          <Route path='manageTools' element={<RequireAdmin><ManageTools /></RequireAdmin>} />
           <Route path='payment/:id' element={<RequireAuth><Payment /></RequireAuth>} />
         </Route>
 

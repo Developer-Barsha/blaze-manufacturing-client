@@ -18,7 +18,7 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 overflow-y-auto w-48 bg-neutral gap-2 text-white ">
+                    <ul className="menu p-4 overflow-y-auto w-50 bg-neutral gap-2 text-white ">
                         {/* <!-- Sidebar content here --> */}
                         <li><NavLink to={''}>Dashboard</NavLink></li>
                         <li><NavLink to={'addReview'}>Add Review</NavLink></li>
@@ -27,6 +27,8 @@ const Dashboard = () => {
                         <li><NavLink to={'myOrders'}>My Orders</NavLink></li>
 
                         {admin === true && <li><NavLink to={'manageUsers'}>Manage Users</NavLink></li>}
+                        {admin === true && <li><NavLink to={'manageTools'}>Manage Tools</NavLink></li>}
+                        {admin === true && <li><NavLink to={'manageOrders'}>Manage All Orders</NavLink></li>}
                         {admin === true && <li><NavLink to={'makeAdmin'}>Make Admin</NavLink></li>}
                     </ul>
 

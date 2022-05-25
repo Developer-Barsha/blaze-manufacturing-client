@@ -11,7 +11,7 @@ const AddTool = () => {
         const description = e.target.description.value;
         const image = e.target.image.value;
         const tool = { name, price, quanitity, minOrder, image, description };
-        fetch('http://localhost:5000/tools', {
+        fetch('https://blaze-manufacturing.herokuapp.com/tools', {
             method: 'POST',
             headers: { 
                 'content-type': 'application/json',

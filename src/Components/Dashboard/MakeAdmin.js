@@ -7,7 +7,7 @@ import UserRow from './UserRow';
 const MakeAdmin = () => {
     const navigate = useNavigate();
 
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/users', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://blaze-manufacturing.herokuapp.com/users', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

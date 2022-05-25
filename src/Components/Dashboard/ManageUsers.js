@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-// import OrderRow from './OrderRow';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const ManageOrders = () => {
+const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [modalId, setModalId] = useState('');
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://blaze-manufacturing.herokuapp.com/users', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -27,7 +26,7 @@ const ManageOrders = () => {
     }, [users, user, navigate]);
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://blaze-manufacturing.herokuapp.com/users/${id}`, {
             method: 'DELETE',
             headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` }
         })
@@ -98,4 +97,4 @@ const ManageOrders = () => {
     );
 };
 
-export default ManageOrders;
+export default ManageUsers;

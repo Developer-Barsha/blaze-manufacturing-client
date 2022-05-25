@@ -10,10 +10,11 @@ const stripePromise = loadStripe('pk_test_51L1OENEltALjRpnEVtkASdFYFBCLnVtJMgLqo
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/orders/${id}`;
-    const { data: order, isLoading } = useQuery(['order', id], () =>
-        fetch(url,
-            { headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } })
+    const url = `https://blaze-manufacturing.herokuapp.com/orders/${id}`;
+    const { data: order, isLoading } = useQuery(['payment', id], () =>
+        fetch(url,{
+            method:'GET',
+            headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } })
             .then(res => res.json()))
 
     if (isLoading) {

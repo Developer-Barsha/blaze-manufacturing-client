@@ -11,7 +11,6 @@ const Navbar = () => {
 
     const menu = <>
         <CustomLink to={'/'}>Home</CustomLink>
-        <CustomLink to={'/about'}>About</CustomLink>
         <CustomLink to={'/myPortfolio'}>My Portfolio</CustomLink>
         <CustomLink to={'/blogs'}>Blogs</CustomLink>
         {user && <CustomLink to={'/dashboard'}>Dashboard</CustomLink>}

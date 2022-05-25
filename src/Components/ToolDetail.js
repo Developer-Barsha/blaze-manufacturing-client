@@ -28,7 +28,7 @@ const ToolDetail = () => {
         const cost = parseFloat(order * toolPrice).toFixed(2);
         const postingTool = {...data, price:cost};
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://blaze-manufacturing.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

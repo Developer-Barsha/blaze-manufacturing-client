@@ -12,7 +12,7 @@ const CheckoutForm = ({ order }) => {
     const { _id, price, name, email } = order;
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://blaze-manufacturing.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -78,21 +78,21 @@ const CheckoutForm = ({ order }) => {
                 transactionId:paymentIntent?.id,
             };
 
-            console.log('http://localhost:5000/orders/'+_id);
+            console.log('https://blaze-manufacturing.herokuapp.com/orders/'+_id);
             
-            // fetch('http://localhost:5000/orders/'+_id,{
-            //     method:'PATCH',
-            //     headers:{
-            //         'content-type':'application/json',
-            //         authorization:`Bearer ${localStorage.getItem('accessToken')}`
-            //     },
-            //     body:JSON.stringify(payment)
-            // })
-            // .then(res=>res.json())
-            // .then(data=>{
-            //     setProccessing(false);
-            //     console.log(data);
-            // })
+            fetch('https://blaze-manufacturing.herokuapp.com/orders/'+_id,{
+                method:'PATCH',
+                headers:{
+                    'content-type':'application/json',
+                    authorization:`Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body:JSON.stringify(payment)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                setProccessing(false);
+                console.log(data);
+            })
         }
     }
 
