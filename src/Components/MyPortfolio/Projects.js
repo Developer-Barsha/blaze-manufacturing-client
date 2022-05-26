@@ -19,8 +19,7 @@ const Projects = () => {
             image: redOnion,
             title: 'Red Onion',
             tools: 'React, CSS, React Router, Bootstrap',
-            server: 'https://github.com/Developer-Barsha/fruits-corner-server',
-            client: 'https://github.com/Developer-Barsha/fruits-corner-client',
+            code: 'https://github.com/Developer-Barsha/red-onion-restaurant',
             link: 'https://red-onion-resturant.netlify.app/'
         },
         {
@@ -28,7 +27,8 @@ const Projects = () => {
             image: fruitsCorner,
             title: 'Fruits Corner',
             tools: 'React, CSS, React Router, Tailwind, JWT',
-            code: 'https://github.com/Developer-Barsha/red-onion-restaurant',
+            server: 'https://github.com/Developer-Barsha/fruits-corner-server',
+            client: 'https://github.com/Developer-Barsha/fruits-corner-client',
             link: 'https://fruits-corner.netlify.app/'
         },
     ];
