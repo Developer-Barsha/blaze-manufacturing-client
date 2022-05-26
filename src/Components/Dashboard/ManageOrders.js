@@ -74,7 +74,7 @@ const ManageOrders = () => {
             <div className="flex justify-center h-screen my-20 items-center overflow-auto">
                 {modal}
                 {orders.length > 0 ?
-                    <table className="table pl-80 lg:pl-0">
+                    <table className="table border">
                         {/* <!-- head --> */}
                         <thead>
                             <tr>
@@ -93,7 +93,7 @@ const ManageOrders = () => {
                                 orders?.length > 0 &&
                                 orders?.map((order, index) =>
                                     <tr key={order?._id}>
-                                        <th>{index + 1}</th>
+                                        <th className='lg:pl-2 pl-80'>{index + 1}</th>
                                         <td>{order?.tool}</td>
                                         <td>{order?.email}</td>
                                         <td>{order?.order}</td>

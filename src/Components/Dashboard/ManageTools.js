@@ -59,12 +59,12 @@ const ManageTools = () => {
             <div className="flex justify-center h-screen overflow-auto">
                 {modal}
                 {users.length>0 ?
-                    <table className="table ml-40 lg:ml-0 border">
+                    <table className="table border">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='lg:pl-0 pl-80'>Name</th>
+                            <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
                         </tr>
@@ -76,7 +76,7 @@ const ManageTools = () => {
                             users?.map(tool => 
                             <tr key={tool?._id}>
                                 <th><img src={tool?.image} width={30} alt="" /></th>
-                                <td className='lg:pl-0 pl-80'>{tool?.name ? tool.name : 'Not set'}</td>
+                                <td>{tool?.name ? tool.name : 'Not set'}</td>
                                 <td>{tool?.price}</td>
                                 <td>
                                     {

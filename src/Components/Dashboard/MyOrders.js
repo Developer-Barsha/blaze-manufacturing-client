@@ -66,7 +66,7 @@ const MyOrders = () => {
             <div className="flex justify-center h-screen my-20 items-center overflow-auto">
                 {modal}
                 {orders.length>0 ?
-                    <table className="table ml-40 lg:ml-0">
+                    <table className="table">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>

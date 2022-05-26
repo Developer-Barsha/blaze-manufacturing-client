@@ -58,12 +58,12 @@ const ManageUsers = () => {
             <div className="flex justify-center items-center">
                 {modal}
                 {users.length>0 ?
-                    <table className="table ml-40 lg:ml-0">
+                    <table className="table border">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th className='lg:pl-0 pl-80'>Name</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Action</th>
@@ -75,8 +75,8 @@ const ManageUsers = () => {
                             users?.length > 0 &&
                             users?.map((user, index) => 
                             <tr key={user?._id}>
-                                <th>{index + 1}</th>
-                                <td className='lg:pl-0 pl-80'>{user?.name ? user.name : 'Not set'}</td>
+                                <th className='lg:pl-2 pl-60'>{index + 1}</th>
+                                <td className=''>{user?.name ? user.name : 'Not set'}</td>
                                 <td>{user?.email}</td>
                                 <td>{user?.role ? user.role : 'user'}</td>
                                 <td>
