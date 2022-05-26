@@ -40,8 +40,8 @@ function App() {
         <Route path='/purchase/:id' element={<RequireAuth><ToolDetail /></RequireAuth>} />
 
         {/* // dashboard nested routes */}
-        <Route path='/dashboard' element={<Dashboard />}>
-          <Route index element={<Welcome/>} />
+        <Route path='/dashboard' element={<RequireAuth><Dashboard /></RequireAuth>}>
+          <Route index element={<RequireAuth><Welcome/></RequireAuth>} />
           <Route path='addReview' element={<RequireAuth><AddReview /></RequireAuth>} />
           <Route path='addTool' element={<RequireAdmin><AddTool /></RequireAdmin>} />
           <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />

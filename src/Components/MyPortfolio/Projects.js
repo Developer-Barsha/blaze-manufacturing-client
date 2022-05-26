@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import demoPortfolio from './../../images/projects/1.png';
 import fruitsCorner from './../../images/projects/2.png';
 import redOnion from './../../images/projects/3.png';

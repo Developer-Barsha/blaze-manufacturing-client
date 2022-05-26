@@ -18,7 +18,6 @@ const MyProfile = () => {
                 setDbUser(data);
             });
     }, [dbUser, user?.email])
-    console.log(dbUser);
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -41,7 +40,7 @@ const MyProfile = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data?.upsertedId) {
+                if (data?.modifiedCount) {
                     toast.success('Successfully updated profile!')
                 }
                 e.target.reset();

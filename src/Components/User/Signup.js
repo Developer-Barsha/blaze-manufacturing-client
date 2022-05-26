@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import auth from './../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
@@ -7,18 +7,24 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Loader from './../../Shared/Loader';
 import Social from '../../Shared/Social';
 import useToken from '../../hooks/useToken';
+import {useAuthState} from 'react-firebase-hooks/auth';
 
 const Signup = () => {
+    const [user] = useAuthState(auth);
     const [createUserWithEmailAndPassword, loogedUser, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-    const [user, setUser] = useState({});
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [token] = useToken(user);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    console.log(from);
+
     useEffect(() => {
+        if (token) {
+            toast.success('Successfully registered!');
+            console.log(from);
+            return navigate(from, { replace: true });
+        }
         if (error || updateError) {
             toast.error(error?.message || updateError?.message);
         }
@@ -28,17 +34,10 @@ const Signup = () => {
         return <Loader />
     }
 
-    if (token) {
-        toast.success('Successfully registered!');
-        console.log(from);
-        return navigate(from, { replace: true });
-    }
     const onSubmit = handleSubmit(async data => {
         const name = data.name;
         const email = data.email;
         const password = data.password;
-        const settingUser = { name, email };
-        setUser(settingUser);
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
     });
