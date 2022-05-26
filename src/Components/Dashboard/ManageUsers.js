@@ -37,9 +37,8 @@ const ManageUsers = () => {
                 }
             })
     }
-    // console.log(orders);
+    
     const modal = <>
-        {/* <!-- Put this part before </body> tag-- > */}
         <input type="checkbox" id="confirm-modal" className="modal-toggle" />
         <div className="modal modal-bottom sm:modal-middle">
             <div className="modal-box">
@@ -55,8 +54,8 @@ const ManageUsers = () => {
         </div></>
 
     return (
-        <div>
-            <div className="flex justify-center">
+        <div className='justify-center h-screen my-20 flex overflow-auto items-center'>
+            <div className="flex justify-center items-center">
                 {modal}
                 {users.length>0 ?
                     <table className="table ml-40 lg:ml-0">

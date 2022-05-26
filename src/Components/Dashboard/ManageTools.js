@@ -56,7 +56,7 @@ const ManageTools = () => {
 
     return (
         <div>
-            <div className="flex justify-center">
+            <div className="flex justify-center h-screen overflow-auto">
                 {modal}
                 {users.length>0 ?
                     <table className="table ml-40 lg:ml-0 border">
