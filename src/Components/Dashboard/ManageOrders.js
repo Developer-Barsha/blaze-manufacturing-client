@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const ManageOrders = () => {
@@ -47,7 +47,7 @@ const ManageOrders = () => {
         }
         ).then(res => res.json())
             .then(data => {
-                if(data.modifiedCount){
+                if (data.modifiedCount) {
                     toast.success('Successfully updated status');
                 }
             })
@@ -58,10 +58,10 @@ const ManageOrders = () => {
         <div className="modal modal-bottom sm:modal-middle">
             <div className="modal-box">
                 <h3 className="font-bold text-lg">Delete order?</h3>
-                <p className="py-4">Remember once deleted, you can get it back</p>
+                <p className="py-4">Remember once deleted, you can't get it back</p>
                 <div className="modal-action">
-                    <label htmlFor="confirm-modal">
-                        <button onClick={() => handleDelete(modalId)} className='btn btn-error'>Delete</button>
+                    <label htmlFor="confirm-modal" onClick={() => handleDelete(modalId)} className='btn btn-error modal-button'>
+                        Delete
                     </label>
                     <label htmlFor="confirm-modal" className="btn">Close</label>
                 </div>
@@ -71,10 +71,10 @@ const ManageOrders = () => {
 
     return (
         <div>
-            <div className="flex justify-center h-screen my-20 items-center overflow-auto">
+            <div className="flex justify-center mt-auto h-screen my-20 items-center overflow-auto">
                 {modal}
                 {orders.length > 0 ?
-                    <table className="table border">
+                    <table className="table border my-auto">
                         {/* <!-- head --> */}
                         <thead>
                             <tr>

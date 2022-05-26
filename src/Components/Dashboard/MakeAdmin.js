@@ -24,9 +24,9 @@ const MakeAdmin = () => {
     }
 
     return (
-        <div className='justify-center h-screen my-20 items-center flex overflow-auto'>
+        <div className='justify-center h-screen mt-auto items-center flex overflow-auto'>
             <div className="overflow-x-auto w-full">
-                <table className="table w-5/12 border overflow-scroll rounded-xl items-center">
+                <table className="table w-5/12 border overflow-scroll rounded-xl items-center my-auto">
                     {/* <!-- head --> */}
                     <thead>
                         <tr>

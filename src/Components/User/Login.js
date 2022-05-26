@@ -19,7 +19,6 @@ const Login = () => {
     useEffect(() => {
         if (token) {
             toast.success('Successfully logged in!');
-            console.log('inside login',token);
             return navigate(from, { replace: true });
         }
         if (error) {

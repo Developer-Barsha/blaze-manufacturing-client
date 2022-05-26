@@ -37,8 +37,6 @@ const AddReview = () => {
                 }
                 e.target.reset();
             })
-
-        console.log('review' ,review);
     }
 
     return (

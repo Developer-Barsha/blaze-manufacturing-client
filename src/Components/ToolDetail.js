@@ -37,7 +37,6 @@ const ToolDetail = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
                 if (result?.insertedId) {
                     toast.success('Successfully placed your order!')
                 }

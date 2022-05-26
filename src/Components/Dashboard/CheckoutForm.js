@@ -5,12 +5,10 @@ const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardMsg, setCardMsg] = useState('');
-    const [proccessing, setProccessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
     const { _id, price, name, email } = order;
-    console.log(price, order);
 
     useEffect(() => {
         fetch('https://blaze-manufacturing.herokuapp.com/create-payment-intent', {
@@ -48,7 +46,6 @@ const CheckoutForm = ({ order }) => {
         });
 
         setCardMsg(error?.message || '');
-        setProccessing(true);
 
         //confrim card paymet intent
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
@@ -66,12 +63,10 @@ const CheckoutForm = ({ order }) => {
 
         if(intentError){
             setCardMsg(<p className='text-error mt-3'>{intentError?.message}</p>);
-            setProccessing(false);
         }
         else{
             setCardMsg(<p className='text-success mt-3'>Successfully payment made</p>)
             setTransactionId(paymentIntent?.id);
-            console.log(paymentIntent);
 
             //storing payment info in database
             const payment = {
@@ -88,10 +83,7 @@ const CheckoutForm = ({ order }) => {
                 body:JSON.stringify(payment)
             })
             .then(res=>res.json())
-            .then(data=>{
-                setProccessing(false);
-                console.log(data);
-            })
+            .then(data=>console.log(data))
         }
     }
 

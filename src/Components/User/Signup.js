@@ -22,7 +22,6 @@ const Signup = () => {
     useEffect(() => {
         if (token) {
             toast.success('Successfully registered!');
-            console.log(from);
             return navigate(from, { replace: true });
         }
         if (error || updateError) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const ManageTools = () => {
@@ -37,17 +37,16 @@ const ManageTools = () => {
                 }
             })
     }
-    // console.log(orders);
+
     const modal = <>
-        {/* <!-- Put this part before </body> tag-- > */}
         <input type="checkbox" id="confirm-modal" className="modal-toggle" />
         <div className="modal modal-bottom sm:modal-middle">
             <div className="modal-box">
                 <h3 className="font-bold text-lg">Delete Tool?</h3>
-                <p className="py-4">Are you sure to delete? Remember once deleted, you can get it back</p>
+                <p className="py-4">Are you sure to delete? Remember once deleted, you can't get it back</p>
                 <div className="modal-action">
-                    <label htmlFor="confirm-modal">
-                        <button onClick={() => handleDelete(modalId)} className='btn btn-error'>Delete</button>
+                    <label htmlFor="confirm-modal" onClick={() => handleDelete(modalId)} className='btn btn-error modal-button'>
+                        Delete
                     </label>
                     <label htmlFor="confirm-modal" className="btn">Close</label>
                 </div>
@@ -56,39 +55,39 @@ const ManageTools = () => {
 
     return (
         <div>
-            <div className="flex justify-center h-screen overflow-auto">
+            <div className="flex justify-center h-screen overflow-auto mt-auto">
                 {modal}
-                {users.length>0 ?
-                    <table className="table border">
-                    {/* <!-- head --> */}
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* <!-- row 1 --> */}
-                        {
-                            users?.length > 0 &&
-                            users?.map(tool => 
-                            <tr key={tool?._id}>
-                                <th><img src={tool?.image} width={30} alt="" /></th>
-                                <td>{tool?.name ? tool.name : 'Not set'}</td>
-                                <td>{tool?.price}</td>
-                                <td>
-                                    {
-                                        (!tool?.paid) &&
-                                        // {/* <!-- The button to open modal --> */}
-                                        <label htmlFor="confirm-modal" onClick={()=>setModalId(tool?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label>
-                                    }
-                                </td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table> : <p className='text-2xl'>No Tools</p>
+                {users.length > 0 ?
+                    <table className="table border my-auto">
+                        {/* <!-- head --> */}
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* <!-- row 1 --> */}
+                            {
+                                users?.length > 0 &&
+                                users?.map(tool =>
+                                    <tr key={tool?._id}>
+                                        <th><img src={tool?.image} width={30} alt="" /></th>
+                                        <td>{tool?.name ? tool.name : 'Not set'}</td>
+                                        <td>{tool?.price}</td>
+                                        <td>
+                                            {
+                                                (!tool?.paid) &&
+                                                // {/* <!-- The button to open modal --> */}
+                                                <label htmlFor="confirm-modal" onClick={() => setModalId(tool?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label>
+                                            }
+                                        </td>
+                                    </tr>)
+                            }
+                        </tbody>
+                    </table> : <p className='text-2xl'>No Tools</p>
                 }
             </div>
         </div >

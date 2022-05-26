@@ -27,7 +27,6 @@ const AddTool = () => {
                 e.target.reset();
             })
 
-        console.log('tool', tool);
     }
 
     return (
