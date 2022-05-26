@@ -12,12 +12,9 @@ const Login = () => {
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [token] = useToken(user?.user);
-    console.log(user?.user)
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-
-    console.log('inside login',token);
 
     useEffect(() => {
         if (token) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import auth from '../firebase.init';
@@ -8,6 +8,13 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
+    const [dbUser, setDbUser] = useState({});
+
+    useEffect(() => {
+        fetch(`https://blaze-manufacturing.herokuapp.com/users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setDbUser(data));
+    }, [dbUser, user?.email])
 
     const menu = <>
         <CustomLink to={'/'}>Home</CustomLink>
@@ -16,7 +23,7 @@ const Navbar = () => {
         {user && <CustomLink to={'/dashboard'}>Dashboard</CustomLink>}
         {!user ?
             <button className='btn' onClick={() => navigate('/login')}>Login</button> :
-            <p className='text-primary font-bold'>{user?.displayName}</p>}
+            <p className='text-primary font-bold'>{dbUser?.name ? dbUser?.name : user?.displayName}</p>}
         {user ?
             <button className='btn btn-primary' onClick={() => {
                 signOut(auth)

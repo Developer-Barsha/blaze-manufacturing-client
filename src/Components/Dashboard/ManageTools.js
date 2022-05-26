@@ -64,7 +64,7 @@ const ManageTools = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th className='lg:pl-0 pl-80'>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
                         </tr>
@@ -76,7 +76,7 @@ const ManageTools = () => {
                             users?.map(tool => 
                             <tr key={tool?._id}>
                                 <th><img src={tool?.image} width={30} alt="" /></th>
-                                <td>{tool?.name ? tool.name : 'Not set'}</td>
+                                <td className='lg:pl-0 pl-80'>{tool?.name ? tool.name : 'Not set'}</td>
                                 <td>{tool?.price}</td>
                                 <td>
                                     {

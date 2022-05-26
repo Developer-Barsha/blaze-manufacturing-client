@@ -10,16 +10,17 @@ const stripePromise = loadStripe('pk_test_51L1OENEltALjRpnEVtkASdFYFBCLnVtJMgLqo
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `https://blaze-manufacturing.herokuapp.com/orders/${id}`;
+    
     const { data: order, isLoading } = useQuery(['payment', id], () =>
-        fetch(url,{
+        fetch('https://blaze-manufacturing.herokuapp.com/pay-order/'+id,{
             method:'GET',
-            headers: { authorization: `Bearer ${localStorage.getItem('accessToken')}` } })
+            headers: { 'authorization': `Bearer ${localStorage.getItem('accessToken')}` } })
             .then(res => res.json()))
-
+       
     if (isLoading) {
         return <Loader />;
     }
+
 
     return (
         <div className='py-5'>
@@ -27,16 +28,13 @@ const Payment = () => {
                 <div className="card-body">
                     <h2 className="font-bold text-primary">Hello there, {order?.name}!</h2>
                     <h2 className="card-title">Pay for : {order?.tool}</h2>
-                    <p>Total Cost: $ {order?.price}</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
-                    </div>
+                    <p>Total Cost: $ <b>{order?.price}</b></p>
                 </div>
             </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <div className="card-body">
                     <Elements stripe={stripePromise}>
-                        <CheckoutForm order={order}/>
+                        <CheckoutForm order={order} />
                     </Elements>
                 </div>
             </div>

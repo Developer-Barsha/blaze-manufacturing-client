@@ -64,7 +64,7 @@ const ManageUsers = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th className='lg:pl-0 pl-80'>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Action</th>
@@ -77,7 +77,7 @@ const ManageUsers = () => {
                             users?.map((user, index) => 
                             <tr key={user?._id}>
                                 <th>{index + 1}</th>
-                                <td>{user?.name ? user.name : 'Not set'}</td>
+                                <td className='lg:pl-0 pl-80'>{user?.name ? user.name : 'Not set'}</td>
                                 <td>{user?.email}</td>
                                 <td>{user?.role ? user.role : 'user'}</td>
                                 <td>

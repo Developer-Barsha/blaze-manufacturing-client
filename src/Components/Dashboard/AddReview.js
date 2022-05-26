@@ -1,7 +1,19 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import auth from './../../firebase.init';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import useAdmin from '../../hooks/useAdmin';
+import { useNavigate } from 'react-router-dom';
 
 const AddReview = () => {
+    const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
+    const navigate = useNavigate();
+
+    if(admin){
+        return navigate('/dashboard');
+    }
+
     const handleAddReview = e => {
         e.preventDefault();
         const name = e.target.name.value;

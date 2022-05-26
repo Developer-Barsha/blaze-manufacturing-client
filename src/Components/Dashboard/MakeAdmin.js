@@ -31,7 +31,7 @@ const MakeAdmin = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th className='lg:pl-0 pl-80'>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                         </tr>

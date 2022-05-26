@@ -18,6 +18,7 @@ const MyProfile = () => {
                 setDbUser(data);
             });
     }, [dbUser, user?.email])
+    console.log(dbUser);
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -29,7 +30,6 @@ const MyProfile = () => {
         const linkedin = (e.target.linkedin.value || dbUser?.linkedin) || '';
 
         const user = { name: newName, email, education, phone, city, linkedin };
-        console.log(user);
 
         fetch(`https://blaze-manufacturing.herokuapp.com/users/${dbUser?.email}`, {
             method: 'PUT',
@@ -48,75 +48,6 @@ const MyProfile = () => {
             })
     };
 
-    // <div>
-    //     <div class="container mx-auto mt-12 md:mt-12 md:space-x-10 md:grid grid-cols-2 justify-center md:py-35">
-    //         <div className='flex justify-center items-center'>
-    //             <div class="card w-96 min-h-52 bg-base-100 shadow-xl">
-    //                 <div class="card-body">
-    //                     <h1 class="text-4xl text-gray-800 text-center font-bold mb-6">Your Profile</h1>
-    //                     <h2 ><span className='text-orange-500'>Name:</span> {updatedUser?.name ? updatedUser.name : user.displayName || user.name}</h2>
-    //                     <p className=''><span className='text-orange-400 font-bold'>email: </span>{user?.email}</p>
-
-    //                     <p><span className='text-orange-400 font-bold'>city: </span>{updatedUser?.city ? updatedUser.city : 'Not Available'}</p>
-    //                     <p><span className='text-orange-400 font-bold'>education: </span>{updatedUser?.education ? updatedUser.education : 'Not Available'}</p>
-    //                     <p><span className='text-orange-400 font-bold'>phone: </span>{updatedUser?.phone ? updatedUser.phone : 'Not Available'}</p>
-    //                     <p><span className='text-orange-400 font-bold'>linkedin: </span>{updatedUser?.linkedin ? updatedUser.linkedin : 'Not Available'}</p>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         <div class="mt-8 md:mt-0 lg:justify-end col-span-1">
-
-    //             <div className='flex justify-center'>
-    //                 <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 p-3 border-2 border-gray-500 ">
-    //                     <form onSubmit={handleEditUser}>
-    //                         <div class="card-body">
-    //                             <h1 class="text-4xl text-gray-800 text-center font-bold mb-6">Edit Profile</h1>
-    //                             <div class="form-control">
-    //                                 <label class="label">
-    //                                     <span class="label-text">Name</span>
-    //                                 </label>
-    //                                 <input type="text" name='name' placeholder="name" class="input input-bordered" />
-    //                             </div>
-    //                             <div class="form-control">
-    //                                 <label class="label">
-    //                                     <span class="label-text">Education</span>
-    //                                 </label>
-    //                                 <input type="text" name='education' placeholder="education" class="input input-bordered" />
-    //                             </div>
-    //                             <div class="form-control">
-    //                                 <label class="label">
-    //                                     <span class="label-text">city</span>
-    //                                 </label>
-    //                                 <input type="text" placeholder="city" name='city' class="input input-bordered" />
-
-    //                             </div>
-    //                             <div class="form-control">
-    //                                 <label class="label">
-    //                                     <span class="label-text">Phone</span>
-    //                                 </label>
-    //                                 <input type="number" placeholder="Phone" name='phone' class="input input-bordered" />
-
-    //                             </div>
-    //                             <div class="form-control">
-    //                                 <label class="label">
-    //                                     <span class="label-text">Linkedin</span>
-    //                                 </label>
-    //                                 <input type="text" placeholder="linkedin" name='linkedin'    class="input input-bordered" />
-
-    //                             </div>
-    //                             <div class="form-control mt-6">
-    //                                 <button class="btn btn-primary">Update</button>
-    //                             </div>
-
-
-    //                         </div>
-    //                     </form>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
-
     return (
         <div className='mt-16'>
             <section className='z-50 relative mx-auto md:mt-12 grid lg:grid-cols-2 grid-cols-1 lg:px-10 px-5 my-10 gap-10'>
@@ -124,7 +55,7 @@ const MyProfile = () => {
                     <div className="card w-96 shadow-xl mx-auto">
                         <div className='card-body shadow-lg p-8 rounded-xl border-2'>
                             <h1 className="card-title text-3xl text-neutral font-bold">Your Profile</h1>
-                            <h1 className="text-2xl text-primary font-bold py-2">{dbUser?.name}</h1>
+                            <h1 className="text-2xl text-primary font-bold py-2">{dbUser?.name ? dbUser?.name : user?.displayName}</h1>
                             <p>Email : <span className="font-bold">{user?.email}</span></p>
                             <p>Education : <span className="font-bold">{education ? education : 'Not set'}</span></p>
                             <p>Address : <span className="font-bold">{city ? city : 'Not set'}</span></p>

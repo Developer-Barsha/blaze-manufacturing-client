@@ -3,12 +3,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useAdmin from '../../hooks/useAdmin';
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
     const [modalId, setModalId] = useState('');
     const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
     const navigate = useNavigate();
+
     useEffect(() => {
         fetch('https://blaze-manufacturing.herokuapp.com/orders/' + user?.email, {
             method: 'GET',
@@ -24,6 +27,10 @@ const MyOrders = () => {
         })
             .then(data => setOrders(data))
     }, [orders, user, navigate]);
+
+    if(admin){
+        return navigate('/dashboard');
+    }
 
     const handleDelete = id => {
         fetch(`https://blaze-manufacturing.herokuapp.com/orders/${id}`, {
@@ -56,7 +63,7 @@ const MyOrders = () => {
 
     return (
         <div>
-            <div className="flex justify-center">
+            <div className="flex">
                 {modal}
                 {orders.length>0 ?
                     <table className="table ml-40 lg:ml-0">
@@ -64,7 +71,7 @@ const MyOrders = () => {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Tool</th>
+                            <th className='lg:pl-0 pl-80'>Tool</th>
                             <th>Email</th>
                             <th>Quantity</th>
                             <th>Price</th>
@@ -79,7 +86,7 @@ const MyOrders = () => {
                             orders?.map((order, index) => 
                             <tr key={order?._id}>
                                 <th>{index + 1}</th>
-                                <td>{order?.tool}</td>
+                                <td className='lg:pl-0 sm:pl-80'>{order?.tool}</td>
                                 <td>{order?.email}</td>
                                 <td>{order?.order}</td>
                                 <td>{order?.price}</td>
@@ -89,11 +96,12 @@ const MyOrders = () => {
                                         :
                                         <Link to={`/dashboard/payment/${order?._id}`} className='btn btn-xs btn-primary'>Pay</Link>
                                 }</td>
-                                <td>
+                                <td className='overflow-x-auto'>
                                     {
-                                        (!order?.paid) &&
+                                        (!order?.paid) ?
                                         // {/* <!-- The button to open modal --> */}
-                                        <label htmlFor="confirm-modal" onClick={()=>setModalId(order?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label>
+                                        <label htmlFor="confirm-modal" onClick={()=>setModalId(order?._id)} className="btn modal-button btn-sm btn-primary"><i className="fa-solid fa-trash-can"></i></label> :
+                                        (order?.transactionId)
                                     }
                                 </td>
                             </tr>)

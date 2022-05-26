@@ -10,6 +10,7 @@ const CheckoutForm = ({ order }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     const { _id, price, name, email } = order;
+    console.log(price, order);
 
     useEffect(() => {
         fetch('https://blaze-manufacturing.herokuapp.com/create-payment-intent', {
@@ -77,8 +78,6 @@ const CheckoutForm = ({ order }) => {
                 tool:_id,
                 transactionId:paymentIntent?.id,
             };
-
-            console.log('https://blaze-manufacturing.herokuapp.com/orders/'+_id);
             
             fetch('https://blaze-manufacturing.herokuapp.com/orders/'+_id,{
                 method:'PATCH',

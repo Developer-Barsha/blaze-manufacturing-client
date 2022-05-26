@@ -8,6 +8,7 @@ import auth from '../firebase.init';
 const ToolDetail = () => {
     const { id } = useParams();
     const [tool, setTool] = useState({});
+    const [user] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     useEffect(() => {
@@ -19,7 +20,6 @@ const ToolDetail = () => {
             .then(res => res.json())
             .then(data => setTool(data))
     }, [id]);
-    const [user] = useAuthState(auth);
 
     const handlePurchase = handleSubmit(async (data, e) => {
         e.preventDefault();

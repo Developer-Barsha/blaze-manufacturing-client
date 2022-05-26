@@ -39,19 +39,18 @@ const ManageOrders = () => {
     }
 
     const handleUpdateStatus = id => {
-        fetch('https://blaze-manufacturing.herokuapp.com/orders/', {
-            method: 'GET',
+        fetch('https://blaze-manufacturing.herokuapp.com/pay-order/' + id, {
+            method: 'PATCH',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         }
-        ).then(res => {
-            if (res.status === 401 || res.status === 403) {
-                navigate('/login');
-            }
-            return res.json();
-        })
-            .then(data => setOrders(data))
+        ).then(res => res.json())
+            .then(data => {
+                if(data.modifiedCount){
+                    toast.success('Successfully updated status');
+                }
+            })
     }
 
     const modal = <>
@@ -75,7 +74,7 @@ const ManageOrders = () => {
             <div className="flex justify-center">
                 {modal}
                 {orders.length > 0 ?
-                    <table className="table ml-40 lg:ml-0">
+                    <table className="table pl-80 lg:pl-0">
                         {/* <!-- head --> */}
                         <thead>
                             <tr>
@@ -103,9 +102,9 @@ const ManageOrders = () => {
                                             {
                                                 (order?.price && order?.paid) ?
                                                     (
-                                                        (order?.status==='pending') ?
-                                                            <button>pending</button> :
-                                                            (order?.status)
+                                                        (order?.status === 'pending') ?
+                                                            <button onClick={() => handleUpdateStatus(order?._id)} className='btn btn-xs btn-info'>Pending</button> :
+                                                            <button className='btn btn-xs btn-success'>{order?.status}</button>
                                                     )
                                                     :
                                                     <button className='btn btn-xs btn-error'>Unpaid</button>

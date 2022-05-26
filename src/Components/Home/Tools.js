@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/useAdmin';
 
 const Tools = () => {
     const [tools, setTools] = useState([]);
+    const [user] = useAuthState(auth);
+    const [admin] = useAdmin(user);
+
     useEffect(() => {
         fetch('https://blaze-manufacturing.herokuapp.com/tools').then(res => res.json()).then(data => setTools(data))
     }, []);
@@ -24,7 +30,10 @@ const Tools = () => {
                             </h2>
                             <p>{tool.description}</p>
 
-                            <button onClick={() => navigate(`purchase/${tool?._id}`)} className='btn btn-primary'>Purchase</button>
+                            {
+                                admin ? '' :
+                                    <button onClick={() => navigate(`purchase/${tool?._id}`)} className='btn btn-primary'>Purchase</button>
+                            }
 
                             <div className="card-actions justify-end pt-3">
                                 <div className="badge badge-outline">Min Order: <b>{tool.minOrder}</b></div>

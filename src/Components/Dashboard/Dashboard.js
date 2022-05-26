@@ -18,13 +18,13 @@ const Dashboard = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 overflow-y-auto w-50 bg-neutral gap-2 text-white ">
+                    <ul className="menu p-4 overflow-y-auto w-48 bg-neutral gap-2 text-white ">
                         {/* <!-- Sidebar content here --> */}
                         <li><NavLink to={''}>Dashboard</NavLink></li>
-                        <li><NavLink to={'addReview'}>Add Review</NavLink></li>
                         {admin === true && <li><NavLink to={'addTool'}>Add Tool</NavLink></li>}
+                        {!admin&&<li><NavLink to={'addReview'}>Add Review</NavLink></li>}
+                        {!admin&&<li><NavLink to={'myOrders'}>My Orders</NavLink></li>}
                         <li><NavLink to={'myProfile'}>My Profile</NavLink></li>
-                        <li><NavLink to={'myOrders'}>My Orders</NavLink></li>
 
                         {admin === true && <li><NavLink to={'manageUsers'}>Manage Users</NavLink></li>}
                         {admin === true && <li><NavLink to={'manageTools'}>Manage Tools</NavLink></li>}

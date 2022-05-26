@@ -13,25 +13,26 @@ const Signup = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [user, setUser] = useState({});
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [token] = useToken(user);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
-    const [token] = useToken(user);
-    console.log('from sign up', token);
-
+    console.log(from);
     useEffect(() => {
-        if (loogedUser) {
-            return navigate(from, { replace: true });
-        }
         if (error || updateError) {
             toast.error(error?.message || updateError?.message);
         }
-    }, [loogedUser, navigate, from, error, updateError])
+    }, [loogedUser, navigate, from, error, updateError, token, user])
 
     if (loading || updating) {
         return <Loader />
     }
 
+    if (token) {
+        toast.success('Successfully registered!');
+        console.log(from);
+        return navigate(from, { replace: true });
+    }
     const onSubmit = handleSubmit(async data => {
         const name = data.name;
         const email = data.email;

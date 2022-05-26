@@ -20,7 +20,7 @@ const UserRow = ({ user, index, refetch }) => {
 
         <tr key={user?._id}>
             <th>{index + 1}</th>
-            <td>{user?.name || 'Not Set' }</td>
+            <td className='lg:pl-0 pl-80'>{user?.name || 'Not Set' }</td>
             <td>{user?.email}</td>
             <td>{
                 user?.role === 'admin' ?
